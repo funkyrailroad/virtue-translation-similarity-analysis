@@ -125,7 +125,7 @@ for translation, vector in zip(translations, translation_vectors):
     translation["vector"] = vector
 
 
-fig, cos_sim_matrix = calculate_and_display_cosine_similarity_matrix(
+cos_sim_matrix_fig, cos_sim_matrix = calculate_and_display_cosine_similarity_matrix(
     translation_texts,
     translation_vectors,
     cutoff=0.5,
