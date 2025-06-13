@@ -35,6 +35,16 @@ app.layout = html.Div(
                     href="/cosine-similarity",
                     style={"marginRight": "15px"},
                 ),
+                dcc.Link(
+                    "Most similar translations",
+                    href="/most-similar-translations",
+                    style={"marginRight": "15px"},
+                ),
+                dcc.Link(
+                    "Least similar translations",
+                    href="/least-similar-translations",
+                    style={"marginRight": "15px"},
+                ),
             ],
             style={
                 "padding": "20px",

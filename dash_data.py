@@ -146,3 +146,66 @@ cos_sim_matrix_fig, cos_sim_matrix = calculate_and_display_cosine_similarity_mat
     translation_vectors,
     cutoff=0.5,
 )
+
+df = pd.DataFrame(translations)
+df = df.drop(columns=["id"]).reset_index(names="id")
+print(df)
+
+# prepare data from crossed columns
+cross_cols = [
+    "id",
+    "text",
+    "quote_id",
+    "book_id",
+    "vector",
+]
+crossed = df[cross_cols].merge(df[cross_cols], how="cross")[
+    [
+        "id_x",
+        "id_y",
+        "quote_id_x",
+        "quote_id_y",
+        "book_id_x",
+        "book_id_y",
+        "text_x",
+        "text_y",
+        "vector_x",
+        "vector_y",
+    ]
+]
+
+# remove comparisons of translations with themselves
+crossed = crossed[crossed["id_x"] != crossed["id_y"]]
+
+# remove comparisons of different quotes
+crossed = crossed[crossed["quote_id_x"] == crossed["quote_id_y"]]
+
+# remove inverse duplicates i.e. only have one of (a,b) and (b,a)
+crossed["pair_key"] = crossed[["id_x", "id_y"]].apply(frozenset, axis=1)
+crossed = crossed.drop_duplicates("pair_key").drop(columns=["pair_key"])
+
+crossed["cos_sim"] = crossed.apply(
+    lambda row: cosine_similarity(row["vector_x"], row["vector_y"]), axis=1
+)
+
+# confirm there are no comparisons across quotes, and quote_id_x == quote_id_y
+(crossed[crossed["quote_id_x"] == crossed["quote_id_y"]] == crossed).all().all() == True
+
+# get the row with max cosine similarity for each group
+max_cos_sim = crossed[["quote_id_x", "cos_sim"]].groupby("quote_id_x").transform("max")
+
+most_similar_translations = crossed[crossed["cos_sim"] == max_cos_sim["cos_sim"]]
+most_similar_translations[
+    ["quote_id_x", "book_id_x", "text_x", "text_y", "book_id_y", "cos_sim"]
+].sort_values("cos_sim", ascending=True)
+
+
+# get the row with min cosine similarity for each group
+min_cos_sim = crossed[["quote_id_x", "cos_sim"]].groupby("quote_id_x").transform("min")
+min_cos_sim
+
+
+least_similar_translations = crossed[crossed.cos_sim == min_cos_sim.cos_sim]
+least_similar_translations[
+    ["quote_id_x", "book_id_x", "text_x", "text_y", "book_id_y", "cos_sim"]
+].sort_values("cos_sim", ascending=False)
