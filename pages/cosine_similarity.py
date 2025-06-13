@@ -2,7 +2,7 @@ from dash import html, dcc, Input, Output
 import dash
 import dash_bootstrap_components as dbc
 
-from dash_data import model_name, translation_texts, cos_sim_matrix, cos_sim_matrix_fig_sim_matrix_sim_matrix
+from dash_data import model_name, translation_texts, cos_sim_matrix, cos_sim_matrix_fig
 
 
 app = dash.get_app()
@@ -53,7 +53,7 @@ layout = html.Div(
         ),
         dcc.Graph(
             id="heatmap",
-            figure=cos_sim_matrix_fig_sim_matrix_sim_matrix,
+            figure=cos_sim_matrix_fig,
             style={
                 "width": "800px",
                 "height": "800px",
