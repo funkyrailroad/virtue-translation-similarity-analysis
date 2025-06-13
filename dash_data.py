@@ -1,3 +1,6 @@
+import os
+import joblib
+import hashlib
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
@@ -24,11 +27,24 @@ def get_model():
     return SentenceTransformer(model_name)
 
 
+def get_cache_filename(texts):
+    joined = "".join(texts)
+    h = hashlib.md5(joined.encode()).hexdigest()
+    return f".vector_cache_{h}.joblib"
+
+
 @lru_cache(maxsize=5)
 def vectorize_translations(translation_texts) -> np.ndarray:
     logger.info("Vectorizing translations...")
+    cache_file = get_cache_filename(translation_texts)
+    if os.path.exists(cache_file):
+        print(f"Loading vectors from {cache_file}")
+        return joblib.load(cache_file)
+    print(f"Saved vectors to {cache_file}")
     model = get_model()
-    return model.encode(translation_texts)
+    translation_vectors = model.encode(translation_texts)
+    joblib.dump(translation_vectors, cache_file)
+    return translation_vectors
 
 
 def cosine_similarity(a, b):
