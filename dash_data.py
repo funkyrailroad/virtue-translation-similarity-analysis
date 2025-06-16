@@ -1,15 +1,17 @@
-import os
-import joblib
-import hashlib
-import numpy as np
-import pandas as pd
-import plotly.graph_objects as go
-from textwrap3 import wrap
 from data import translations
 from functools import lru_cache
 from sentence_transformers import SentenceTransformer
+from sklearn.manifold import MDS
+from textwrap3 import wrap
 from tqdm import tqdm
+import hashlib
+import joblib
 import logging
+import numpy as np
+import os
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
 
 
 # Set up basic logging
@@ -195,17 +197,177 @@ crossed["cos_sim"] = crossed.apply(
 max_cos_sim = crossed[["quote_id_x", "cos_sim"]].groupby("quote_id_x").transform("max")
 
 most_similar_translations = crossed[crossed["cos_sim"] == max_cos_sim["cos_sim"]]
-most_similar_translations[
-    ["quote_id_x", "book_id_x", "text_x", "text_y", "book_id_y", "cos_sim"]
-].sort_values("cos_sim", ascending=True)
 
 
 # get the row with min cosine similarity for each group
 min_cos_sim = crossed[["quote_id_x", "cos_sim"]].groupby("quote_id_x").transform("min")
-min_cos_sim
 
 
 least_similar_translations = crossed[crossed.cos_sim == min_cos_sim.cos_sim]
-least_similar_translations[
-    ["quote_id_x", "book_id_x", "text_x", "text_y", "book_id_y", "cos_sim"]
-].sort_values("cos_sim", ascending=False)
+
+
+translation_vectors_norm = np.sqrt((translation_vectors**2).sum(axis=1))
+normed_translation_vectors = (
+    translation_vectors / np.expand_dims(translation_vectors_norm, axis=0).transpose()
+)
+
+# MDS
+n_components = 2
+mds = MDS(n_components=n_components)
+
+X_reduced = mds.fit_transform(normed_translation_vectors)
+
+x_col_name = "Dimension 1"
+y_col_name = "Dimension 2"
+mds_df = pd.concat(
+    [
+        pd.DataFrame(X_reduced),
+        df[["quote_id", "book_id"]],
+    ],
+    axis=1,
+).rename(
+    columns={0: x_col_name, 1: y_col_name},
+)
+plot_mds_df = mds_df
+# subset_inds = [0, 1, 2, 3, 4, 5, 6, 7]
+# plot_mds_df = mds_df[df.quote_id.isin(subset_inds)]
+x_margin = 0.05 * (plot_mds_df[x_col_name].max() - plot_mds_df[x_col_name].min())
+y_margin = 0.05 * (plot_mds_df[y_col_name].max() - plot_mds_df[y_col_name].min())
+plot_mds_df.loc[:, "quote_id"] = plot_mds_df.quote_id.astype(str)
+mds_fig = go.Figure(
+    px.scatter(
+        plot_mds_df,
+        x=x_col_name,
+        y=y_col_name,
+        color="quote_id",
+        hover_data=["book_id"],
+        range_x=[
+            plot_mds_df[x_col_name].min() - x_margin,
+            plot_mds_df[x_col_name].max() + x_margin,
+        ],
+        range_y=[
+            plot_mds_df[y_col_name].min() - y_margin,
+            plot_mds_df[y_col_name].max() + y_margin,
+        ],
+    )
+)
+mds_fig.update_layout(
+    title={
+        "text": "MDS Visualization of Translation Embeddings",
+        "xanchor": "center",
+        "x": 0.5,
+    },
+    font=dict(
+        family="Arial",
+        size=14,
+        color="black",
+    ),
+)
+
+
+# UMAP
+import umap
+
+reducer = umap.UMAP(
+    metric="cosine",
+    # n_neighbors=30,
+    n_components=2,
+)
+embedding = reducer.fit_transform(normed_translation_vectors)
+
+x_col_name = "Dimension 1"
+y_col_name = "Dimension 2"
+umap_df = pd.concat(
+    [pd.DataFrame(embedding), df[["quote_id", "book_id"]]], axis=1
+).rename(
+    columns={0: x_col_name, 1: y_col_name},
+)
+
+x_margin = 0.05 * (umap_df[x_col_name].max() - umap_df[x_col_name].min())
+y_margin = 0.05 * (umap_df[y_col_name].max() - umap_df[y_col_name].min())
+umap_df.loc[:, "quote_id"] = umap_df.quote_id.astype(str)
+umap_fig = go.Figure(
+    px.scatter(
+        umap_df,
+        x=x_col_name,
+        y=y_col_name,
+        color="quote_id",
+        hover_data=["book_id"],
+        range_x=[
+            umap_df[x_col_name].min() - x_margin,
+            umap_df[x_col_name].max() + x_margin,
+        ],
+        range_y=[
+            umap_df[y_col_name].min() - y_margin,
+            umap_df[y_col_name].max() + y_margin,
+        ],
+    )
+)
+umap_fig.update_layout(
+    title={
+        "text": "UMAP Visualization of Translation Embeddings",
+        "xanchor": "center",
+        "x": 0.5,
+    },
+    font=dict(
+        family="Arial",
+        size=14,
+        color="black",
+    ),
+)
+
+
+# TSNE
+from sklearn.manifold import TSNE
+
+x_col_name = "Dimension 1"
+y_col_name = "Dimension 2"
+reducer = TSNE(
+    n_components=2,
+    learning_rate="auto",
+    init="random",
+    # perplexity=3,
+    metric="cosine",
+)
+embedding = reducer.fit_transform(normed_translation_vectors)
+dim_red_df = pd.concat(
+    [
+        pd.DataFrame(embedding),
+        df[["quote_id", "book_id"]],
+    ],
+    axis=1,
+).rename(
+    columns={0: x_col_name, 1: y_col_name},
+)
+x_margin = 0.05 * (dim_red_df[x_col_name].max() - dim_red_df[x_col_name].min())
+y_margin = 0.05 * (dim_red_df[y_col_name].max() - dim_red_df[y_col_name].min())
+dim_red_df.loc[:, "quote_id"] = dim_red_df.quote_id.astype(str)
+tsne_fig = go.Figure(
+    px.scatter(
+        dim_red_df,
+        x=x_col_name,
+        y=y_col_name,
+        color="quote_id",
+        hover_data=["book_id"],
+        range_x=[
+            dim_red_df[x_col_name].min() - x_margin,
+            dim_red_df[x_col_name].max() + x_margin,
+        ],
+        range_y=[
+            dim_red_df[y_col_name].min() - y_margin,
+            dim_red_df[y_col_name].max() + y_margin,
+        ],
+    )
+)
+tsne_fig.update_layout(
+    title={
+        "text": "T-SNE Visualization of Translation Embeddings",
+        "xanchor": "center",
+        "x": 0.5,
+    },
+    font=dict(
+        family="Arial",
+        size=14,
+        color="black",
+    ),
+)

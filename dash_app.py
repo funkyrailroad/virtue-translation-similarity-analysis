@@ -45,6 +45,11 @@ app.layout = html.Div(
                     href="/least-similar-translations",
                     style={"marginRight": "15px"},
                 ),
+                dcc.Link(
+                    "Dimensionality Reduction",
+                    href="/dimensionality-reduction",
+                    style={"marginRight": "15px"},
+                ),
             ],
             style={
                 "padding": "20px",
