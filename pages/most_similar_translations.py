@@ -19,13 +19,13 @@ most_similar_data_table = dashify_dataframe(
             "book_id_y",
             "cos_sim",
         ]
-    ].sort_values("cos_sim", ascending=True)
+    ].sort_values("cos_sim", ascending=False)
 )
 
 layout = dbc.Container(
     [
         dash.html.H2(
-            children="Most and Least Similar Translations",
+            children="Most Similar Translations",
             style={
                 "textAlign": "center",
                 "fontFamily": "Georgia, serif",
