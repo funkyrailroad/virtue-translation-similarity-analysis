@@ -1,5 +1,5 @@
 import dash
-from dash import html
+import dash_bootstrap_components as dbc
 
 from dash_data import least_similar_translations
 from utils import dashify_dataframe
@@ -7,6 +7,7 @@ from utils import dashify_dataframe
 app = dash.get_app()
 
 dash.register_page(__name__)
+
 
 least_similar_data_table = dashify_dataframe(
     least_similar_translations[
@@ -21,7 +22,7 @@ least_similar_data_table = dashify_dataframe(
     ].sort_values("cos_sim", ascending=False)
 )
 
-layout = html.Div(
+layout = dbc.Container(
     [
         dash.html.H2(
             children="Most and Least Similar Translations",

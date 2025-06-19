@@ -10,7 +10,7 @@ app = dash.get_app()
 dash.register_page(__name__)
 
 
-layout = html.Div(
+layout = dbc.Container(
     [
         dash.html.Center(children=f"Embedding model used: {model_name}"),
         dash.html.Center(id="cos-sim", className="my-2"),

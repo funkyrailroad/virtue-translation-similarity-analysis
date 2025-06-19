@@ -1,5 +1,6 @@
 import dash
-from dash import html, dcc
+from dash import dcc
+import dash_bootstrap_components as dbc
 
 from dash_data import mds_fig, umap_fig, tsne_fig
 
@@ -7,7 +8,7 @@ app = dash.get_app()
 
 dash.register_page(__name__)
 
-layout = html.Div(
+layout = dbc.Container(
     [
         dcc.Graph(
             id="mds-figure",

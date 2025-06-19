@@ -1,9 +1,10 @@
 import dash
-from dash import html
+import dash_core_components as dcc
+import dash_bootstrap_components as dbc
 
 dash.register_page(__name__, path="/")
 
-layout = html.Div(
+layout = dbc.Container(
     [
         html.Div(
             """
