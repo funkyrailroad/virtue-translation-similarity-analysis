@@ -18,44 +18,47 @@ app = dash.Dash(
 )
 dash.register_page(__name__)
 
+navbar = dbc.NavbarSimple(
+    children=[
+        dbc.NavItem(
+            dcc.Link(
+                "Cosine Similarity",
+                href="/cosine-similarity",
+                className="nav-link",
+            ),
+        ),
+        dbc.NavItem(
+            dcc.Link(
+                "Most similar translations",
+                href="/most-similar-translations",
+                className="nav-link",
+            ),
+        ),
+        dbc.NavItem(
+            dcc.Link(
+                "Least similar translations",
+                href="/least-similar-translations",
+                className="nav-link",
+            ),
+        ),
+        dbc.NavItem(
+            dcc.Link(
+                "Dimensionality Reduction",
+                href="/dimensionality-reduction",
+                className="nav-link",
+            ),
+        ),
+    ],
+    brand="Home",
+    brand_href="/",
+    color="dark",
+    dark=True,
+)
 
 app.layout = html.Div(
     children=[
         dcc.Location(id="url"),
-        # Optional: shared navbar
-        html.Nav(
-            [
-                dcc.Link(
-                    "Home",
-                    href="/",
-                    style={"marginRight": "15px"},
-                ),
-                dcc.Link(
-                    "Cosine Similarity",
-                    href="/cosine-similarity",
-                    style={"marginRight": "15px"},
-                ),
-                dcc.Link(
-                    "Most similar translations",
-                    href="/most-similar-translations",
-                    style={"marginRight": "15px"},
-                ),
-                dcc.Link(
-                    "Least similar translations",
-                    href="/least-similar-translations",
-                    style={"marginRight": "15px"},
-                ),
-                dcc.Link(
-                    "Dimensionality Reduction",
-                    href="/dimensionality-reduction",
-                    style={"marginRight": "15px"},
-                ),
-            ],
-            style={
-                "padding": "20px",
-                "borderBottom": "1px solid #ccc",
-            },
-        ),
+        navbar,
         dash.html.H1(
             children="Investigating various translations of quotes",
             style={
