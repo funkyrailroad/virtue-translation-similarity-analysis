@@ -12,11 +12,9 @@ dash.register_page(__name__)
 
 layout = dbc.Container(
     [
-        dash.html.Center(children=f"Embedding model used: {model_name}"),
-        dash.html.Center(id="cos-sim", className="my-2"),
+        dash.dcc.Markdown(f"Embedding model used: {model_name}"),
         dbc.Row(
             [
-                dbc.Col(width=1),
                 dbc.Col(
                     [
                         dbc.Card(
@@ -31,7 +29,6 @@ layout = dbc.Container(
                             className="mb-2",
                         ),
                     ],
-                    width=5,
                 ),
                 dbc.Col(
                     [
@@ -46,19 +43,33 @@ layout = dbc.Container(
                             ]
                         ),
                     ],
-                    width=5,
                 ),
-                dbc.Col(width=1),
             ]
         ),
-        dcc.Graph(
-            id="heatmap",
-            figure=cos_sim_matrix_fig,
-            style={
-                "width": "800px",
-                "height": "800px",
-                "margin": "0 auto",
-            },
+        dbc.Row(
+            [
+                dbc.Col(
+                    dbc.Card(
+                        [
+                            dbc.CardHeader("Cosine Similarity Heatmap"),
+                            dbc.CardBody(
+                                [
+                                    dash.html.Center(id="cos-sim", className="my-2"),
+                                    dcc.Graph(
+                                        id="heatmap",
+                                        figure=cos_sim_matrix_fig,
+                                        style={
+                                            "width": "800px",
+                                            "height": "800px",
+                                            "margin": "0 auto",
+                                        },
+                                    ),
+                                ]
+                            ),
+                        ]
+                    )
+                )
+            ]
         ),
     ],
     className="p-3",
