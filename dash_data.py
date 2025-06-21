@@ -113,6 +113,7 @@ def display_cosine_similarity_matrix(
         font=dict(family="Arial", size=14, color="black"),
         xaxis_title="X Translation",
         yaxis_title="Y Translation",
+        template="ggplot2",
     )
     return fig
 

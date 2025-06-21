@@ -12,7 +12,9 @@ logger = logging.getLogger(__name__)
 
 app = dash.Dash(
     __name__,
-    external_stylesheets=[dbc.themes.BOOTSTRAP],
+    external_stylesheets=[
+        dbc.themes.YETI,
+    ],
     use_pages=True,
     suppress_callback_exceptions=True,
 )
@@ -51,8 +53,6 @@ navbar = dbc.NavbarSimple(
     ],
     brand="Home",
     brand_href="/",
-    color="dark",
-    dark=True,
 )
 
 app.layout = html.Div(
