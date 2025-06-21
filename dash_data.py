@@ -151,7 +151,6 @@ cos_sim_matrix_fig, cos_sim_matrix = calculate_and_display_cosine_similarity_mat
 
 df = pd.DataFrame(translations)
 df = df.drop(columns=["id"]).reset_index(names="id")
-print(df)
 
 # prepare data from crossed columns
 cross_cols = [
