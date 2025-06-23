@@ -2,7 +2,14 @@ from dash import html, dcc, Input, Output
 import dash
 import dash_bootstrap_components as dbc
 
-from dash_data import model_name, translation_texts, cos_sim_matrix, cos_sim_matrix_fig
+from dash_data import (
+    calculate_and_display_cosine_similarity_matrix,
+    cos_sim_matrix,
+    cos_sim_matrix_fig,
+    model_name,
+    translation_texts,
+    translation_vectors,
+)
 
 
 app = dash.get_app()
@@ -55,6 +62,19 @@ layout = dbc.Container(
                             dbc.CardBody(
                                 [
                                     dash.html.Center(id="cos-sim", className="my-2"),
+                                    html.Div(
+                                        [
+                                            dbc.Label("Slider", html_for="slider"),
+                                            dcc.Slider(
+                                                id="slider",
+                                                min=0,
+                                                max=1,
+                                                step=0.1,
+                                                value=0.5,
+                                            ),
+                                        ],
+                                        className="mb-3",
+                                    ),
                                     dcc.Graph(
                                         id="heatmap",
                                         figure=cos_sim_matrix_fig,
@@ -96,3 +116,16 @@ def display_click_data(clickData):
             y_translation,
         )
     return "Click on a cell to see its data", "", ""
+
+
+@app.callback(
+    Output("heatmap", "figure"),
+    Input("slider", "value"),
+)
+def adjust_cos_sim_cutoff(value):
+    cos_sim_matrix_fig, cos_sim_matrix = calculate_and_display_cosine_similarity_matrix(
+        translation_texts,
+        translation_vectors,
+        cutoff=value,
+    )
+    return cos_sim_matrix_fig
