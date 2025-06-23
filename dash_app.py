@@ -18,7 +18,6 @@ app = dash.Dash(
     use_pages=True,
     suppress_callback_exceptions=True,
 )
-dash.register_page(__name__)
 
 navbar = dbc.NavbarSimple(
     children=[
