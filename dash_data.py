@@ -71,28 +71,12 @@ def calculate_cosine_similarity_matrix(translation_texts, translation_vectors):
 
 
 def display_cosine_similarity_matrix(
-    labels,
+    customdata,
     cosine_similarity_matrix,
     cutoff,
     char_limit=None,
 ):
     cosine_similarity_matrix[cosine_similarity_matrix < cutoff] = 0
-
-    cdy = []
-    for text in labels:
-        row = []
-        for _ in range(len(labels)):
-            row.append(wrap_text(text[:char_limit]))
-        cdy.append(row)
-
-    cdx = []
-    for _ in range(len(labels)):
-        row = []
-        for text in labels:
-            row.append(wrap_text(text[:char_limit]))
-        cdx.append(row)
-
-    customdata = np.dstack((cdx, cdy))
 
     fig = go.Figure(
         data=go.Heatmap(
@@ -118,6 +102,28 @@ def display_cosine_similarity_matrix(
     return fig
 
 
+def prepare_custom_data_for_heatmap_hovertext(
+    labels,
+    char_limit=None,
+):
+    cdy = []
+    for text in labels:
+        row = []
+        for _ in range(len(labels)):
+            row.append(wrap_text(text[:char_limit]))
+        cdy.append(row)
+
+    cdx = []
+    for _ in range(len(labels)):
+        row = []
+        for text in labels:
+            row.append(wrap_text(text[:char_limit]))
+        cdx.append(row)
+
+    customdata = np.dstack((cdx, cdy))
+    return customdata
+
+
 def calculate_and_display_cosine_similarity_matrix(
     translation_texts,
     translation_vectors,
@@ -128,10 +134,14 @@ def calculate_and_display_cosine_similarity_matrix(
         translation_texts,
         translation_vectors,
     )
+    customdata = prepare_custom_data_for_heatmap_hovertext(
+        labels=translation_texts,
+        char_limit=char_limit,
+    )
     fig = display_cosine_similarity_matrix(
-        translation_texts,
-        cosine_similarity_matrix,
-        cutoff,
+        customdata=customdata,
+        cosine_similarity_matrix=cosine_similarity_matrix,
+        cutoff=cutoff,
         char_limit=char_limit,
     )
     return fig, cosine_similarity_matrix
