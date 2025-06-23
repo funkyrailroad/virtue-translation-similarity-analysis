@@ -3,12 +3,12 @@ import dash
 import dash_bootstrap_components as dbc
 
 from dash_data import (
-    calculate_and_display_cosine_similarity_matrix,
-    cos_sim_matrix,
+    full_cos_sim_matrix,
     cos_sim_matrix_fig,
+    customdata,
+    display_cosine_similarity_matrix,
     model_name,
     translation_texts,
-    translation_vectors,
 )
 
 
@@ -107,7 +107,7 @@ def display_click_data(clickData):
         point = clickData["points"][0]
         x_val = point["x"]
         y_val = point["y"]
-        cos_sim = cos_sim_matrix[y_val][x_val]
+        cos_sim = full_cos_sim_matrix[y_val][x_val]
         x_translation = translation_texts[x_val]
         y_translation = translation_texts[y_val]
         return (
@@ -123,9 +123,9 @@ def display_click_data(clickData):
     Input("slider", "value"),
 )
 def adjust_cos_sim_cutoff(value):
-    cos_sim_matrix_fig, cos_sim_matrix = calculate_and_display_cosine_similarity_matrix(
-        translation_texts,
-        translation_vectors,
+    fig = display_cosine_similarity_matrix(
+        customdata=customdata,
+        cosine_similarity_matrix=full_cos_sim_matrix,
         cutoff=value,
     )
-    return cos_sim_matrix_fig
+    return fig

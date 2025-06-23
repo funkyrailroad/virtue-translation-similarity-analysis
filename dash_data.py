@@ -1,3 +1,4 @@
+from copy import deepcopy
 from data import translations
 from functools import lru_cache
 from sentence_transformers import SentenceTransformer
@@ -74,13 +75,13 @@ def display_cosine_similarity_matrix(
     customdata,
     cosine_similarity_matrix,
     cutoff,
-    char_limit=None,
 ):
-    cosine_similarity_matrix[cosine_similarity_matrix < cutoff] = 0
+    dummy_matrix = deepcopy(cosine_similarity_matrix)
+    dummy_matrix[dummy_matrix < cutoff] = 0
 
     fig = go.Figure(
         data=go.Heatmap(
-            z=cosine_similarity_matrix,
+            z=dummy_matrix,
             zmin=0,
             zmax=1,
             customdata=customdata,
@@ -142,9 +143,8 @@ def calculate_and_display_cosine_similarity_matrix(
         customdata=customdata,
         cosine_similarity_matrix=cosine_similarity_matrix,
         cutoff=cutoff,
-        char_limit=char_limit,
     )
-    return fig, cosine_similarity_matrix
+    return fig, customdata, cosine_similarity_matrix
 
 
 model_name = "all-MiniLM-L6-v2"
@@ -154,10 +154,12 @@ for translation, vector in zip(translations, translation_vectors):
     translation["vector"] = vector
 
 
-cos_sim_matrix_fig, cos_sim_matrix = calculate_and_display_cosine_similarity_matrix(
-    translation_texts,
-    translation_vectors,
-    cutoff=0.5,
+cos_sim_matrix_fig, customdata, full_cos_sim_matrix = (
+    calculate_and_display_cosine_similarity_matrix(
+        translation_texts,
+        translation_vectors,
+        cutoff=0.5,
+    )
 )
 
 df = pd.DataFrame(translations)
