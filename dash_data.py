@@ -51,7 +51,8 @@ def vectorize_translations(translation_texts) -> np.ndarray:
 
 
 def cosine_similarity(a, b):
-    return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+    cos_sim = np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+    return np.clip(cos_sim, -1.0, 1.0)
 
 
 def calculate_cosine_similarity_matrix(translation_texts, translation_vectors):
