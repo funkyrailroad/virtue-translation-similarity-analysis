@@ -245,7 +245,7 @@ plot_mds_df = mds_df
 # plot_mds_df = mds_df[df.quote_id.isin(subset_inds)]
 x_margin = 0.05 * (plot_mds_df[x_col_name].max() - plot_mds_df[x_col_name].min())
 y_margin = 0.05 * (plot_mds_df[y_col_name].max() - plot_mds_df[y_col_name].min())
-plot_mds_df.loc[:, "quote_id"] = plot_mds_df.quote_id.astype(str)
+plot_mds_df["quote_id"] = plot_mds_df.quote_id.astype(str)
 mds_fig = go.Figure(
     px.scatter(
         plot_mds_df,
@@ -297,7 +297,7 @@ umap_df = pd.concat(
 
 x_margin = 0.05 * (umap_df[x_col_name].max() - umap_df[x_col_name].min())
 y_margin = 0.05 * (umap_df[y_col_name].max() - umap_df[y_col_name].min())
-umap_df.loc[:, "quote_id"] = umap_df.quote_id.astype(str)
+umap_df["quote_id"] = umap_df.quote_id.astype(str)
 umap_fig = go.Figure(
     px.scatter(
         umap_df,
@@ -353,7 +353,7 @@ dim_red_df = pd.concat(
 )
 x_margin = 0.05 * (dim_red_df[x_col_name].max() - dim_red_df[x_col_name].min())
 y_margin = 0.05 * (dim_red_df[y_col_name].max() - dim_red_df[y_col_name].min())
-dim_red_df.loc[:, "quote_id"] = dim_red_df.quote_id.astype(str)
+dim_red_df["quote_id"] = dim_red_df.quote_id.astype(str)
 tsne_fig = go.Figure(
     px.scatter(
         dim_red_df,
