@@ -1,5 +1,6 @@
 import dash
-import dash_core_components as dcc
+from dash_data import df
+from dash import dcc
 import dash_bootstrap_components as dbc
 
 dash.register_page(__name__, path="/")
