@@ -74,10 +74,12 @@ def calculate_cosine_similarity_matrix(translation_texts, translation_vectors):
 def display_cosine_similarity_matrix(
     customdata,
     cosine_similarity_matrix,
-    cutoff,
+    lower_cutoff,
+    upper_cutoff=1.0,
 ):
     dummy_matrix = deepcopy(cosine_similarity_matrix)
-    dummy_matrix[dummy_matrix < cutoff] = 0
+    dummy_matrix[dummy_matrix < lower_cutoff] = 0
+    dummy_matrix[dummy_matrix > upper_cutoff] = 0
 
     fig = go.Figure(
         data=go.Heatmap(
@@ -128,7 +130,7 @@ def prepare_custom_data_for_heatmap_hovertext(
 def calculate_and_display_cosine_similarity_matrix(
     translation_texts,
     translation_vectors,
-    cutoff=0.5,
+    lower_cutoff=0.5,
     char_limit=None,
 ):
     cosine_similarity_matrix = calculate_cosine_similarity_matrix(
@@ -142,7 +144,7 @@ def calculate_and_display_cosine_similarity_matrix(
     fig = display_cosine_similarity_matrix(
         customdata=customdata,
         cosine_similarity_matrix=cosine_similarity_matrix,
-        cutoff=cutoff,
+        lower_cutoff=lower_cutoff,
     )
     return fig, customdata, cosine_similarity_matrix
 
@@ -158,7 +160,7 @@ cos_sim_matrix_fig, customdata, full_cos_sim_matrix = (
     calculate_and_display_cosine_similarity_matrix(
         translation_texts,
         translation_vectors,
-        cutoff=0.5,
+        lower_cutoff=0.5,
     )
 )
 

@@ -64,13 +64,13 @@ layout = dbc.Container(
                                     dash.html.Center(id="cos-sim", className="my-2"),
                                     html.Div(
                                         [
-                                            dbc.Label("Slider", html_for="slider"),
-                                            dcc.Slider(
-                                                id="slider",
+                                            dbc.Label("Range Slider", html_for="range-slider"),
+                                            dcc.RangeSlider(
+                                                id="range-slider",
                                                 min=0,
                                                 max=1,
                                                 step=0.1,
-                                                value=0.5,
+                                                value=[0.5, 1.0],
                                             ),
                                         ],
                                         className="mb-3",
@@ -120,12 +120,13 @@ def display_click_data(clickData):
 
 @app.callback(
     Output("heatmap", "figure"),
-    Input("slider", "value"),
+    Input("range-slider", "value"),
 )
-def adjust_cos_sim_cutoff(value):
+def adjust_cos_sim_cutoff_range(value):
     fig = display_cosine_similarity_matrix(
         customdata=customdata,
         cosine_similarity_matrix=full_cos_sim_matrix,
-        cutoff=value,
+        lower_cutoff=value[0],
+        upper_cutoff=value[1],
     )
     return fig
