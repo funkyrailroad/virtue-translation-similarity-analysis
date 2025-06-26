@@ -441,7 +441,7 @@ translations = (
         book_id=3,
     ),
     dict(
-        text="""Let us speak next of liberality. It seems to be the mean with regard to wealth; for the liberal man is praised not in respect of military matters, nor of those in respect of which the temrate man is praised, nor of judicial decisions, but with regard to the giving and taking of wealth, and especially in respect of giving. Now by 'wealth' we mean all the things whose value is measured by money.""",
+        text="""Let us speak next of liberality. It seems to be the mean with regard to wealth; for the liberal man is praised not in respect of military matters, nor of those in respect of which the temperate man is praised, nor of judicial decisions, but with regard to the giving and taking of wealth, and especially in respect of giving. Now by 'wealth' we mean all the things whose value is measured by money.""",
         quote_id=9,
         vector=None,
         language="en",
