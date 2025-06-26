@@ -61,7 +61,6 @@ app.layout = html.Div(
             children="Investigating various translations of quotes",
             style={
                 "textAlign": "center",
-                "fontSize": "30px",
                 "fontFamily": "Georgia, serif",
                 "marginTop": "10px",
                 "marginBottom": "20px",
