@@ -10,6 +10,8 @@ from dash_data import (
     model_name,
     translation_texts,
 )
+from utils import escape_markdown
+from written_word import cosine_similarity_analysis
 
 
 app = dash.get_app()
@@ -27,18 +29,34 @@ layout = dbc.Container(
                         [
                             dbc.CardHeader("Cosine Similarity Heatmap"),
                             dbc.CardBody(
-                                [
-                                    dash.html.Center(id="cos-sim", className="my-2"),
-                                    dcc.Graph(
-                                        id="heatmap",
-                                        figure=cos_sim_matrix_fig,
-                                        style={
-                                            "width": "800px",
-                                            "height": "800px",
-                                            "margin": "0 auto",
-                                        },
-                                    ),
-                                ]
+                                dbc.Row(
+                                    [
+                                        dbc.Col(
+                                            [
+                                                dcc.Graph(
+                                                    id="heatmap",
+                                                    figure=cos_sim_matrix_fig,
+                                                    style={
+                                                        "width": "600px",
+                                                        "height": "600px",
+                                                        "margin": "0 auto",
+                                                    },
+                                                ),
+                                            ]
+                                        ),
+                                        dbc.Col(
+                                            [
+                                                dash.html.Center(id="cos-sim"),
+                                                dcc.Markdown(
+                                                    id="x-translation",
+                                                ),
+                                                dcc.Markdown(
+                                                    id="y-translation",
+                                                ),
+                                            ]
+                                        ),
+                                    ]
+                                )
                             ),
                         ]
                     )
@@ -81,41 +99,7 @@ layout = dbc.Container(
             ),
             className="mb-4",
         ),
-        dbc.Row(
-            [
-                dbc.Col(
-                    [
-                        dbc.Card(
-                            [
-                                dbc.CardHeader("Clicked X Translation"),
-                                dbc.CardBody(
-                                    html.P(
-                                        id="x-translation",
-                                    )
-                                ),
-                            ],
-                            className="mb-2",
-                        ),
-                    ],
-                ),
-                dbc.Col(
-                    [
-                        dbc.Card(
-                            [
-                                dbc.CardHeader("Clicked Y Translation"),
-                                dbc.CardBody(
-                                    html.P(
-                                        id="y-translation",
-                                    )
-                                ),
-                            ]
-                        ),
-                    ],
-                ),
-            ]
-        ),
     ],
-    className="p-3",
 )
 
 
@@ -135,8 +119,8 @@ def display_click_data(clickData):
         y_translation = translation_texts[y_val]
         return (
             f"Cosine similarity: {cos_sim:.3f}",
-            x_translation,
-            y_translation,
+            f"""#### X Translation\n\n{escape_markdown(x_translation)}""",
+            f"""#### Y Translation\n\n{escape_markdown(y_translation)}""",
         )
     return "Click on a cell to see its data", "", ""
 
