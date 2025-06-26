@@ -23,6 +23,67 @@ layout = dbc.Container(
         dbc.Row(
             [
                 dbc.Col(
+                    dbc.Card(
+                        [
+                            dbc.CardHeader("Cosine Similarity Heatmap"),
+                            dbc.CardBody(
+                                [
+                                    dash.html.Center(id="cos-sim", className="my-2"),
+                                    dcc.Graph(
+                                        id="heatmap",
+                                        figure=cos_sim_matrix_fig,
+                                        style={
+                                            "width": "800px",
+                                            "height": "800px",
+                                            "margin": "0 auto",
+                                        },
+                                    ),
+                                ]
+                            ),
+                        ]
+                    )
+                )
+            ]
+        ),
+        dbc.Card(
+            dbc.CardBody(
+                [
+                    dbc.Row(
+                        [
+                            dbc.Col(
+                                html.H6(
+                                    "Cosine Similarity Range",
+                                    className="mb-0",
+                                )
+                            ),
+                            dbc.Col(
+                                html.Div(
+                                    id="range-slider-values",
+                                    className="text-end text-muted",
+                                ),
+                                width="auto",
+                            ),
+                        ],
+                        className="align-items-center mb-2",
+                        justify="between",
+                    ),
+                    dcc.RangeSlider(
+                        id="range-slider",
+                        min=0,
+                        max=1,
+                        step=0.01,
+                        value=[0.5, 1.0],
+                        tooltip={"placement": "bottom", "always_visible": True},
+                        marks={0: "0", 0.5: "0.5", 1: "1"},
+                        persistence=True,
+                    ),
+                ]
+            ),
+            className="mb-4",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
                     [
                         dbc.Card(
                             [
@@ -51,44 +112,6 @@ layout = dbc.Container(
                         ),
                     ],
                 ),
-            ]
-        ),
-        dbc.Row(
-            [
-                dbc.Col(
-                    dbc.Card(
-                        [
-                            dbc.CardHeader("Cosine Similarity Heatmap"),
-                            dbc.CardBody(
-                                [
-                                    dash.html.Center(id="cos-sim", className="my-2"),
-                                    html.Div(
-                                        [
-                                            dbc.Label("Range Slider", html_for="range-slider"),
-                                            dcc.RangeSlider(
-                                                id="range-slider",
-                                                min=0,
-                                                max=1,
-                                                step=0.1,
-                                                value=[0.5, 1.0],
-                                            ),
-                                        ],
-                                        className="mb-3",
-                                    ),
-                                    dcc.Graph(
-                                        id="heatmap",
-                                        figure=cos_sim_matrix_fig,
-                                        style={
-                                            "width": "800px",
-                                            "height": "800px",
-                                            "margin": "0 auto",
-                                        },
-                                    ),
-                                ]
-                            ),
-                        ]
-                    )
-                )
             ]
         ),
     ],
@@ -130,3 +153,11 @@ def adjust_cos_sim_cutoff_range(value):
         upper_cutoff=value[1],
     )
     return fig
+
+
+@app.callback(
+    Output("range-slider-values", "children"),
+    Input("range-slider", "value"),
+)
+def update_range_display(value):
+    return f"{value[0]:.2f} – {value[1]:.2f}"
