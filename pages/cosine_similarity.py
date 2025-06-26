@@ -99,6 +99,7 @@ layout = dbc.Container(
             ),
             className="mb-4",
         ),
+        dcc.Markdown(cosine_similarity_analysis),
     ],
 )
 
