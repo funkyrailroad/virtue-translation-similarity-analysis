@@ -90,19 +90,40 @@ def display_cosine_similarity_matrix(
             customdata=customdata,
             # hovertemplate="<b>similarity:%{z:.3f}</b><br><br>x-text:%{customdata[0]}<br><br>y-text: %{customdata[1]}",
             hoverinfo="none",
+            colorbar=dict(
+                # orientation="h",  # Set orientation to horizontal
+                title=dict(
+                    # text="Color Scale Title",
+                    # side="top",
+                ),
+                lenmode="fraction",  # Set lenmode to fraction
+                len=1.045,
+                # ticks="",
+                # showticklabels=False,
+            ),
         ),
     )
     fig.update_layout(
-        title={
-            "text": "Cosine Similarity Matrix",
-            "xanchor": "center",
-            "x": 0.5,
-        },
-        font=dict(family="Arial", size=14, color="black"),
+        # title={
+        #     "text": "Cosine Similarity Matrix",
+        #     "xanchor": "center",
+        #     "x": 0.5,
+        # },
+        margin=dict(
+            l=30,
+            r=10,
+            t=40,
+            b=40,
+        ),
+        font=dict(
+            size=14,
+        ),
         xaxis_title="X Translation",
         yaxis_title="Y Translation",
         template="ggplot2",
     )
+    fig.update_xaxes(showticklabels=False)
+    fig.update_yaxes(showticklabels=False)
     return fig
 
 

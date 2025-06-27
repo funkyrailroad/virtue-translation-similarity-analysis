@@ -38,7 +38,7 @@ layout = dbc.Container(
                                                     figure=cos_sim_matrix_fig,
                                                     style={
                                                         "width": "600px",
-                                                        "height": "600px",
+                                                        "height": "550px",
                                                         "margin": "0 auto",
                                                     },
                                                 ),
