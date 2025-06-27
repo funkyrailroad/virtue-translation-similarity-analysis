@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: virtue-translation-similarity-analysis
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn dash_app:__main__
+    plan: free
