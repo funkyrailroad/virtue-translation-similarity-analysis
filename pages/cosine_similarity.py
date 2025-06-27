@@ -21,7 +21,6 @@ dash.register_page(__name__)
 
 layout = dbc.Container(
     [
-        dash.dcc.Markdown(f"Embedding model used: {model_name}"),
         dbc.Row(
             [
                 dbc.Col(
@@ -33,6 +32,9 @@ layout = dbc.Container(
                                     [
                                         dbc.Col(
                                             [
+                                                html.Center(
+                                                    f"Embedding model used: {model_name}"
+                                                ),
                                                 dcc.Graph(
                                                     id="heatmap",
                                                     figure=cos_sim_matrix_fig,
@@ -46,7 +48,7 @@ layout = dbc.Container(
                                         ),
                                         dbc.Col(
                                             [
-                                                dash.html.Center(id="cos-sim"),
+                                                html.Center(id="cos-sim"),
                                                 dcc.Markdown(
                                                     id="x-translation",
                                                 ),
@@ -123,7 +125,7 @@ def display_click_data(clickData):
             f"""#### X Translation\n\n{escape_markdown(x_translation)}""",
             f"""#### Y Translation\n\n{escape_markdown(y_translation)}""",
         )
-    return "Click on a cell to see its data", "", ""
+    return "Click on a cell to see the corresponding translations.", "", ""
 
 
 @app.callback(
