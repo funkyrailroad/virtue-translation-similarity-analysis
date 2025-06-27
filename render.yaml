@@ -3,5 +3,5 @@ services:
     name: virtue-translation-similarity-analysis
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn dash_app:__main__
+    startCommand: gunicorn dash_app:server
     plan: free

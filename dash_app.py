@@ -1,6 +1,8 @@
 import dash_bootstrap_components as dbc
 import dash
 from dash import dcc, html
+from flask import Flask
+
 
 import logging
 
@@ -8,7 +10,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-
+server = Flask(__name__)
 app = dash.Dash(
     __name__,
     external_stylesheets=[
@@ -16,6 +18,7 @@ app = dash.Dash(
     ],
     use_pages=True,
     suppress_callback_exceptions=True,
+    server=server,
 )
 
 navbar = dbc.NavbarSimple(
