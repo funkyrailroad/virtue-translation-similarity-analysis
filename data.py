@@ -55,7 +55,7 @@ books = [
 ]
 
 
-quotes = [
+passages = [
     dict(
         id=0,
         description="Opening part, Book 1, Part 1",
