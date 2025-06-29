@@ -23,20 +23,28 @@ processing (NLP).
 """
 
 
-cosine_similarity_analysis = """#### Analysis
+cosine_similarity_analysis = """## Analysis
 
 The brighter colors correspond to higher similarity scores, and the darker
 colors to lower similarity scores.
 
+The figure above is a two-dimensional heatmap/histogram.
+
+
+### Passage clusters and intra-passage translation pairs
 
 The most prominent structure that emerges is the diagonal of squares through
 the middle. Each individual square corresponds to a cluster of translations of
-the same passage. It is to be expected that different translations of the same
-passage should have high similarities; it is interesting however to see that
-some translations have high similarities with translations of other passages,
-and some translations even have highER similarities with at least one
-translation of a different passage than with a translations of the same passage.
+the same passage. I call one of these squares a *passage cluster*, since all
+the translations in it correspond to the same passage. It is to be expected
+that different translations of the same passage should have high similarities;
+it is interesting however to see that some translations have high similarities
+with translations of other passages, and some translations even have highER
+similarities with at least one translation of a different passage than with at
+least one translation of the same passage.
 
+A passage cluster consists of many cells, and each cell corresponds to two
+translations and a similarity score.
 
 Intra-passage translation pairs correspond to translations of the same passage,
 inter-passage translations correspond to translations of different passages.
@@ -48,10 +56,6 @@ translation pairs.
 
 There
 
-
-##### Intra-passage translation pairs
-
-##### Inter-passage translation pairs and Passage clusters
 
 A passage cluster is a cluster of TPs that all correspond the same passage.
 These form the most prominent feature of the heatmap: the diagonal of squares
@@ -101,9 +105,9 @@ differences such that translations that are too differing and too similar are
 both less effective at providing additional understanding.
 
 
-##### Inter-passage translation pairs
+### Inter-passage translation pairs
 
-##### Correlated clusters
+### Correlated clusters
 
 """
 
