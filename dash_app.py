@@ -67,15 +67,6 @@ app.layout = html.Div(
     children=[
         dcc.Location(id="url"),
         navbar,
-        dash.html.H1(
-            children="Investigating various translations of passages",
-            style={
-                "textAlign": "center",
-                "marginTop": "10px",
-                "marginBottom": "20px",
-                "paddingBottom": "10px",
-            },
-        ),
         html.Div(dash.page_container),
     ]
 )
