@@ -76,7 +76,7 @@ passages = [
     ),
     dict(
         id=3,
-        description="Jab at Plato, Book 2, Part 2",
+        description="Emphasis on practicality, Book 2, Part 2",
         preferred_translation=None,
         original_greek=None,
     ),
