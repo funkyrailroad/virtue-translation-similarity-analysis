@@ -539,7 +539,7 @@ translations = (
         book_id=1,
     ),
     dict(
-        text="""It seems, however, that in the spehere of honour too there is a kind of virtue, as we said at the beginning, which may be regarded as related to magnanimity in much the same way as liberality is to magnificence. For both these states are unconcerned with greatness, but dispose us in the right way towards matters of moderate or little importance. Just as in the receiving and giving of money there is a mean and an excess and a deficiency, so also in the desire for honour there are degrees of too much and too little, and a right source and a right manner.""",
+        text="""It seems, however, that in the sphere of honour too there is a kind of virtue, as we said at the beginning, which may be regarded as related to magnanimity in much the same way as liberality is to magnificence. For both these states are unconcerned with greatness, but dispose us in the right way towards matters of moderate or little importance. Just as in the receiving and giving of money there is a mean and an excess and a deficiency, so also in the desire for honour there are degrees of too much and too little, and a right source and a right manner.""",
         quote_id=12,
         vector=None,
         language="en",
