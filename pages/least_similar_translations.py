@@ -24,7 +24,7 @@ least_similar_data_table = dashify_dataframe(
 
 layout = dbc.Container(
     [
-        html.H1("Least similar translations"),
+        html.H1("Least Similar Translations"),
         least_similar_data_table,
     ]
 )

@@ -21,7 +21,7 @@ dash.register_page(__name__)
 
 layout = dbc.Container(
     [
-        html.H1("Translation pair cosine similarity heatmap"),
+        html.H1("Cosine Similarity"),
         dbc.Row(
             [
                 dbc.Col(

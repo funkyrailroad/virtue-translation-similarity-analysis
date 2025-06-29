@@ -10,7 +10,7 @@ register_page(__name__)
 
 layout = dbc.Container(
     [
-        html.H1("Dimensionality reduction"),
+        html.H1("Dimensionality Reduction"),
         dcc.Graph(
             id="mds-figure",
             figure=mds_fig,
