@@ -1,12 +1,12 @@
-import dash
+from dash import get_app, register_page, html
 import dash_bootstrap_components as dbc
 
 from dash_data import most_similar_translations
 from utils import dashify_dataframe
 
-app = dash.get_app()
+app = get_app()
 
-dash.register_page(__name__)
+register_page(__name__)
 
 
 most_similar_data_table = dashify_dataframe(
@@ -24,18 +24,7 @@ most_similar_data_table = dashify_dataframe(
 
 layout = dbc.Container(
     [
-        dash.html.H2(
-            children="Most Similar Translations",
-            style={
-                "textAlign": "center",
-                "fontFamily": "Georgia, serif",
-                "marginTop": "10px",
-                "marginBottom": "20px",
-                "borderBottom": "1px solid #ccc",
-                "paddingBottom": "10px",
-                "color": "#333",
-            },
-        ),
+        html.H1("Most similar translations"),
         most_similar_data_table,
     ]
 )

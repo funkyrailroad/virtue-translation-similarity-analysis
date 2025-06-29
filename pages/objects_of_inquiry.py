@@ -1,7 +1,8 @@
-from dash import get_app, register_page
+from dash import get_app, register_page, html, dcc
 import dash_bootstrap_components as dbc
 
-from data import passages
+from data import passages, translations
+from written_word import dataset_explanation
 
 app = get_app()
 
@@ -13,6 +14,7 @@ register_page(__name__)
 
 layout = dbc.Container(
     [
+        html.H1("Objects of Inquiry"),
         dbc.Accordion(
             [dbc.AccordionItem(title=quote["description"]) for quote in passages],
             start_collapsed=True,

@@ -1,15 +1,16 @@
-import dash
+from dash import get_app, register_page, html
 from dash import dcc
 import dash_bootstrap_components as dbc
 
 from dash_data import mds_fig, umap_fig, tsne_fig
 
-app = dash.get_app()
+app = get_app()
 
-dash.register_page(__name__)
+register_page(__name__)
 
 layout = dbc.Container(
     [
+        html.H1("Dimensionality reduction"),
         dcc.Graph(
             id="mds-figure",
             figure=mds_fig,
