@@ -1,3 +1,28 @@
+dataset_explanation = """
+
+The objects of inquiry (i.e. the dataset), consist of various excerpts from
+`l` publications of the Nicomachean Ethics in English.
+
+The Nicomachean Ethics is one of Aristotle's best-known works, in which he
+considers a number of virtues that are useful for living a good life.
+
+A number of passages are considered (`m`).
+
+The passages correspond to the various virtues that Aristotle expands upon in
+the above-named work.
+
+For each passage, the corresponding translations are extracted from each source
+and compared.
+
+Each piece of text is a translation.
+
+The object of this piece is to see what we can determine from the various
+translations with the help of modern methods from the field of natural language
+processing (NLP).
+
+"""
+
+
 cosine_similarity_analysis = """#### Analysis
 
 The brighter colors correspond to higher similarity scores, and the darker
