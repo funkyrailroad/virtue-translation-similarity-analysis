@@ -12,13 +12,23 @@ register_page(__name__)
 # groupbys
 
 
+def get_translation_texts_by_passage_id(quote_id, translations):
+    return [html.P(t["text"]) for t in translations if t["quote_id"] == quote_id]
+
+
 layout = dbc.Container(
     [
         html.H1("Objects of Inquiry"),
         dbc.Accordion(
-            [dbc.AccordionItem(title=quote["description"]) for quote in passages],
+            [
+                dbc.AccordionItem(
+                    get_translation_texts_by_passage_id(passage["id"], translations),
+                    title=passage["description"],
+                )
+                for passage in passages
+            ],
             start_collapsed=True,
-        )
+        ),
     ]
 )
 
