@@ -89,6 +89,8 @@ def display_cosine_similarity_matrix(
             zmax=1,
             customdata=customdata,
             # hovertemplate="<b>similarity:%{z:.3f}</b><br><br>x-text:%{customdata[0]}<br><br>y-text: %{customdata[1]}",
+            # hovertemplate="similarity:%{z:.3f}<br>",
+            # name="",
             hoverinfo="none",
             colorbar=dict(
                 # orientation="h",  # Set orientation to horizontal
@@ -361,7 +363,7 @@ y_col_name = "Dimension 2"
 reducer = TSNE(
     n_components=2,
     learning_rate="auto",
-    init="random",
+    # init="pca",
     # perplexity=3,
     metric="cosine",
 )

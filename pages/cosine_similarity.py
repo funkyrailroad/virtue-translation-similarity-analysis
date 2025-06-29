@@ -93,6 +93,7 @@ layout = dbc.Container(
                         min=0,
                         max=1,
                         step=0.01,
+                        # vertical=True,
                         value=[0.5, 1.0],
                         tooltip={"placement": "bottom", "always_visible": True},
                         marks={0: "0", 0.5: "0.5", 1: "1"},
