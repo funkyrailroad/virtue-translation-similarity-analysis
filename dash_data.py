@@ -30,8 +30,9 @@ def get_model():
     return SentenceTransformer(model_name)
 
 
-def get_cache_filename(texts):
+def get_cache_filename(texts, model_name):
     joined = "".join(texts)
+    joined += model_name
     h = hashlib.md5(joined.encode()).hexdigest()
     return f".vector_cache_{h}.joblib"
 
@@ -39,7 +40,7 @@ def get_cache_filename(texts):
 @lru_cache(maxsize=5)
 def vectorize_translations(translation_texts) -> np.ndarray:
     logger.info("Vectorizing translations...")
-    cache_file = get_cache_filename(translation_texts)
+    cache_file = get_cache_filename(translation_texts, model_name)
     if os.path.exists(cache_file):
         print(f"Loading vectors from {cache_file}")
         return joblib.load(cache_file)
