@@ -115,7 +115,7 @@ def display_cosine_similarity_matrix(
         margin=dict(
             l=30,
             r=10,
-            t=40,
+            t=1,
             b=40,
         ),
         font=dict(
@@ -124,6 +124,7 @@ def display_cosine_similarity_matrix(
         xaxis_title="X Translation",
         yaxis_title="Y Translation",
         template="ggplot2",
+        modebar={"orientation": "v"},
     )
     fig.update_xaxes(showticklabels=False)
     fig.update_yaxes(showticklabels=False)
