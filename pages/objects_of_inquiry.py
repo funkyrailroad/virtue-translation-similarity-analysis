@@ -19,16 +19,26 @@ def get_translation_texts_by_passage_id(quote_id, translations):
 layout = dbc.Container(
     [
         html.H1("Objects of Inquiry"),
-        dcc.Markdown(dataset_explanation),
-        dbc.Accordion(
-            [
-                dbc.AccordionItem(
-                    get_translation_texts_by_passage_id(passage["id"], translations),
-                    title=passage["description"],
-                )
-                for passage in passages
-            ],
-            start_collapsed=True,
+        dbc.Row(
+            dbc.Col(
+                [
+                    dcc.Markdown(dataset_explanation),
+                    dbc.Accordion(
+                        [
+                            dbc.AccordionItem(
+                                get_translation_texts_by_passage_id(
+                                    passage["id"], translations
+                                ),
+                                title=passage["description"],
+                            )
+                            for passage in passages
+                        ],
+                        start_collapsed=True,
+                    ),
+                ],
+                md="8",
+            ),
+            justify="center",
         ),
     ]
 )

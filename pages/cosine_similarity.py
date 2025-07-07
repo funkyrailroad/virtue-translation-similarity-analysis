@@ -27,14 +27,19 @@ layout = dbc.Container(
                 dbc.Col(
                     dbc.Card(
                         [
-                            dbc.CardHeader("Cosine Similarity Heatmap"),
+                            dbc.CardHeader("Translation Similarity Visualization"),
                             dbc.CardBody(
                                 dbc.Row(
                                     [
                                         dbc.Col(
                                             [
+                                                # html.Center(
+                                                #     f"Embedding model used: {model_name}"
+                                                # ),
                                                 html.Center(
-                                                    f"Embedding model used: {model_name}"
+                                                    dcc.Markdown(
+                                                        "### Cosine Similarity Heatmap",
+                                                    ),
                                                 ),
                                                 dcc.Graph(
                                                     id="heatmap",
@@ -45,7 +50,7 @@ layout = dbc.Container(
                                                         "margin": "0 auto",
                                                     },
                                                 ),
-                                            ]
+                                            ],
                                         ),
                                         dbc.Col(
                                             [

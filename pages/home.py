@@ -7,8 +7,16 @@ register_page(__name__, path="/")
 layout = dbc.Container(
     [
         html.H1(
-            "Investigating various translations of passages",
+            # "Comparing multiple translations of passages in the Nicomachean Ethics",
+            "On the Many Ways to Skin a Cat: Translating an Ancient Text",
+            # "Investigating various translations of passages",
         ),
-        dcc.Markdown(home_text),
+        dbc.Row(
+            dbc.Col(
+                dcc.Markdown(home_text),
+                md="8",
+            ),
+            justify="center",
+        ),
     ]
 )
