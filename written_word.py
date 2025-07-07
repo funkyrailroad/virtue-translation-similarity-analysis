@@ -1,13 +1,17 @@
 dataset_explanation = """
-
-The objects of inquiry (i.e. the dataset), consist of various excerpts from
-`l` publications of the Nicomachean Ethics in English.
+The objects of inquiry (i.e. the dataset), consist of various excerpts from a
+number of translated publications of the Nicomachean Ethics into English.
 
 The Nicomachean Ethics is one of Aristotle's best-known works, in which he
-considers a number of virtues that are useful for living a good life.
+considers a number of virtues that are useful for living a good life (among
+other things).
 
-A number of passages are considered (`m`).
 
+A number of passages are considered (`m`). I've selected passages that
+introduce the various virtues. He treats each virtue in much more depth. I've
+somewhat arbitrarily taken the first few sentences of each section, there was
+some manual effort involved in typing out the passages found in my hard copies.
+For the digital copies, I was just able to copy and paste the relevant text.
 The passages correspond to the various virtues that Aristotle expands upon in
 the above-named work.
 
@@ -18,7 +22,9 @@ Each piece of text is a translation.
 
 The object of this piece is to see what we can determine from the various
 translations with the help of modern methods from the field of natural language
-processing (NLP).
+processing (NLP). It is educational, I'll explain some of the basic concepts
+involved and provide sources for further understanding; and it is exploratory,
+I'll be taking a look at things I've been interested in lately.
 
 """
 cosine_similarity_methods = """
@@ -137,8 +143,100 @@ both less effective at providing additional understanding.
 
 """
 
+introduction_text = """
+
+This is a little research project I undertook as a result of reading through
+some of the Nicomachean Ethics. The Nicomachean Ethics is one of Aristotle's
+best-known works, in which he considers a number of virtues that are useful for
+living a good life (among other things).
+
+-
+
+"""
 
 home_text = """
+Here are the opening lines of the Nicomachean Ethics.
+
+> "Every art and every inquiry, and similarly every action and pursuit, is
+thought to aim at some good; and for this reason the good has rightly been
+declared to be that at which all things aim. But a certain difference is found
+among ends..."
+
+
+The good that this particular inquiry aims at is to bring a different type of
+object to the forefront of analysis. While working on this project, I came
+across a number of methods, and each has their own canonical examples for
+demonstrating a particular type of analysis.
+
+For example, Natural Language Processing (NLP) has typical examples like spam
+detection in emails and classifying the sentiment of movie, product and
+restaurant reviews. Another example, in dimensionality reduction, a typical
+example used is related to the dimensions of flower petals in what is know as
+the Iris flower dataset.
+
+These are fantastic and relevant examples for their use cases and the ends they
+pursue, but going back to the quote above, `... a certain difference is found
+among ends...` Our lives are finite so we can't pursue every good and end we
+come across or conceive, so which are the most worthy ends and goods to pursue?
+If there is a single highest and most worthy aim/goal/end to pursue, what is
+it? This is exactly the subject matter Aristotle covers in the Nicomachean
+Ethics.
+
+
+One of his conclusions is that a way to achieve the highest and most important
+aim of life is to live virtuously by doing virtuous acts. He goes on to
+delineate a number of virtues by explaining what they are and how people stray
+from them by engaging in their associated vices.
+
+
+I initially started reading the Nicomachean Ethics by finding a freely
+available translation on Wikisource. Some of the words the translator used were
+a little more difficult to understand. It was an older translation from the
+early 1900s, and it's a work of philosophy, so I didn't exactly have an easy
+time of understanding it. Reading the same passage multiple times was
+necessary. I also noticed that Wikisource had a second version of the
+Nicomachean Ethics, translated by a different author. I began to read that one
+as well, switching between the two works for a given passage to help me
+triangulate the meaning in the text.
+
+I found this technique helpful, and also incredibly interesting. I started to
+see words used in the same context that I'd never even considered were related
+before. When you think about it makes sense, but I'd just never thought about
+it before. (Just one example: characteristic, disposition, trait.) It also made
+me curious about what the original Greek words were that they were trying to
+translate.
+
+
+About a month or two after starting to read the versions on Wikisource, I
+decided to pick up a physical copy. I figured it'd be interesting to see how
+another translation differs from the two I'd been reading, and to have the
+ability to read off-screen. I wandered into a local bookstore, and wound up
+walking out with three newer translations.
+
+These were more modern, with publication dates
+
+While going back and forth between the different sources, I noticed that
+sometimes the translations were very similar, and sometimes they were very
+different. Being already very familiar with the methods and tools of Natural
+Language Processing from my day job, and being particularly disposed to
+investigatory inquiries from my educational upbringing in the natural sciences,
+I decided to try to quantify just how similar and different the different
+translations are from each other, present my findings in an interactive data
+dashboard, and give myself additional exposure to this rich material I've been
+enjoying.
+
+
+Also in an extremely hand-waving capacity, it's a slight look at how well AI
+understands some ethics, virtues and vices.
+
+
+
+
+
+#################
+
+=============================
+
 This might be a good spot for an introduction of the subject matter. Maybe even
 list out all the quotes.
 
@@ -154,23 +252,25 @@ worth your time, attention and effort? Proper conduct is one of them.
 
 I have a long history of physics, math, analytics, programming, natural
 language processing and data science, so I figured I apply those skills to
-these objects of inquiry. My initial approach for reading the Nicomachean
-Ethics has been going back and forth between two English translations that are
-freely available on the internet. They're written not exactly in "modern
-English", and any philosophical text in general usually requires a few reads,
-so my general approach has been to read a passage one or more times in one
-source, read the same passage one or more times in the other source, and
-repeat that cycle one or more times. Even just rereading the same thing over
-and over is extraordinarily helpful, but having an additional translation
-available offers even more insights. Ironically, there's an similarity to the
-allegory of the cave here. Aristotle's original text is in ancient greek, and
-reading that directly is currently beyond my grasp. That's akin to the ideal
-Forms that are out of view of the cave dwellers. As a cave dweller, I only
-have access to the Shadows, and in this case, the shadows would be the various
+these objects of inquiry.
+
+My initial approach for reading the Nicomachean Ethics has been going back and
+forth between two English translations that are freely available on the
+internet. They're written not exactly in "modern English", and any
+philosophical text in general usually requires a few reads, so my general
+approach has been to read a passage one or more times in one source, read the
+same passage one or more times in the other source, and repeat that cycle one
+or more times. Even just rereading the same thing over and over is
+extraordinarily helpful, but having an additional translation available offers
+even more insights. Ironically, there's a similarity to the allegory of the
+cave here. Aristotle's original text is in Ancient Greek, and reading that
+directly is currently beyond my grasp. The original text is akin to the ideal
+Forms that are out of view of the cave dwellers. As a cave dweller, I only have
+access to the Shadows, and in this case, the shadows would be the various
 translations of the original texts. The shadows themselves can have different
 shapes, although they are cast by the same Form. In a similar manner, each
-translation of the original work has differences although they are translated
-from the same original work.
+translation of the original work has differences although they are all
+embodiments from the same original work.
 
 
 I was in a book store a couple months back and decided to pick up a physical
