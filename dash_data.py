@@ -60,6 +60,9 @@ def calculate_cosine_similarity_matrix(translation_texts, translation_vectors):
     similarities = {}
     scalar_grid = []
 
+    # NOTE: because cosine similarity is symmetric w.r.t. the input vectors,
+    # cos_sim(v1, v2) = cos_sim(v2, v1), and the second calculation doesn't
+    # need to be done
     for trait1, vector1 in tqdm(zip(translation_texts, translation_vectors)):
         scalar_row = []
         for trait2, vector2 in zip(translation_texts, translation_vectors):
