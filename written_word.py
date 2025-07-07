@@ -21,7 +21,33 @@ translations with the help of modern methods from the field of natural language
 processing (NLP).
 
 """
+cosine_similarity_methods = """
+### Methods
 
+At the heart of this analysis is the numerical representation of text data. The
+text is represented as a vector, and the dimensionality depends on the
+particular embedding model used. This vectorized representation of text is also
+known as an embedding. To determine the similarity of any pair of texts (or
+translations in our case here), I make use of the cosine similarity metric.
+Vectors have a length and a direction, and the cosine similarity is a metric
+that tells us by how much any two vectors are pointing in the same direction
+(independent of the lengths of each individual vector). If two pieces of text
+are identical, they will be represented by the same embedding/vector, which
+will have maximal cosine similarity with itself. Very similar texts will also
+have a high cosine similarity, and as the texts begin to talk about different
+topics or about the same topic in different ways, the cosine similarity between
+them will decrease. Eventually, once the texts are considered to be completely
+unrelated to each other, the embeddings will become orthogonal. At this point,
+
+As a first step, each translation is vectorized, and the cosine similarity is
+calculated between each pair of vectors.
+
+$$
+\\text{cosine_similarity}(\\vec{A}, \\vec{B}) = 
+\\frac{\\vec{A} \\cdot \\vec{B}}{\\|\\vec{A}\\| \\|\\vec{B}\\|}
+$$
+
+"""
 
 cosine_similarity_analysis = """## Analysis
 

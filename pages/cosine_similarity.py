@@ -11,7 +11,7 @@ from dash_data import (
     translation_texts,
 )
 from utils import escape_markdown
-from written_word import cosine_similarity_analysis
+from written_word import cosine_similarity_analysis, cosine_similarity_methods
 
 
 app = dash.get_app()
@@ -103,7 +103,16 @@ layout = dbc.Container(
             ),
             className="mb-4",
         ),
-        dcc.Markdown(cosine_similarity_analysis),
+        dbc.Row(
+            dbc.Col(
+                [
+                    dcc.Markdown(cosine_similarity_methods, mathjax=True),
+                    dcc.Markdown(cosine_similarity_analysis),
+                ],
+                md="8",
+            ),
+            justify="center",
+        ),
     ],
 )
 
