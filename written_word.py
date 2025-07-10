@@ -155,18 +155,83 @@ living a good life (among other things).
 """
 
 home_text = """
-Here are the opening lines of the Nicomachean Ethics.
+
+The initial motivation for this particular inquiry was to bring a different
+type of object to the forefront of analysis, inspired by the very first words
+of the *Nicomachean Ethics*.
 
 > "Every art and every inquiry, and similarly every action and pursuit, is
 thought to aim at some good; and for this reason the good has rightly been
 declared to be that at which all things aim. But a certain difference is found
 among ends..."
 
+My educational and professional background includes physics, computer
+programming and natural language processing. In line with Thomas Kuhn's ideas
+of *normal science* and *exemplars*, each discipline typically has a set of
+methods and some classic, canonical examples that are used as an introduction
+and foundational instruction. For example in physics, one of the foundational
+examples is describing the trajectory of a falling apple to help understand
+gravity. In computer programming, there are the famous "Hello world!" programs
+to show how to output text to a screen in a given programming language. In
+natural language processing, there's the email spam detector to show how to
+train an AI model to automatically classify a selection of texts into
+categories.
 
-The good that this particular inquiry aims at is to bring a different type of
-object to the forefront of analysis. While working on this project, I came
-across a number of methods, and each has their own canonical examples for
-demonstrating a particular type of analysis.
+These are fantastic and relevant examples for their use cases and the ends they
+pursue, but going back to the quote above, "... a certain difference is found
+among ends..." Not everybody values each of these ends and respective means
+equally, and there's no reason they should either. Everybody has their own
+interests, problems and priorities. If you don't have a desire or need to
+understand gravity, being able to describe the trajectory of a falling apple
+may remain completely irrelevant to you. If you don't have a desire or need to
+write a computer program, understanding how to output text to a screen in a
+computer language might not be worth your time. If you don't have a desire or
+need to automatically classify a selection of texts into categories, you very
+well may be perfectly able to "rest in peace" without ever having built your
+own email spam detector.
+
+Having drawn that distinction between people and the relevancy of any given
+end, any given pair of individuals also has a tremendous amount in common, if
+for no other reason than that they are both human. So instead of just focusing
+on differences and points of disagreement, are there any common aims and ends
+that might be of interest to all humans? If so, what are they? And since we can
+deem certain ends more and less relevant for a given individual, might we also
+be able to do the same for humanity as a whole? And if this is also the case,
+could there be one or more *supreme* ends that are deemed higher and more
+important than the rest? If so, wouldn't it be nice to know what those ends
+are? If you've responded in the affirmative to my leading questions, then you
+are in luck, because this is exactly the subject matter of the Nicomachean
+Ethics.
+
+
+x talk about the arbirary nature of the ends
+- introduce the answer to that question in the Nicomachean ethics
+- having an answer to the question is all well and good, but how about also a
+  methodology and even a framework get there?
+- the exemplars are largely rooted in the discipline itself, and remain there.
+  That is nice because it makes it self contained, but a consequence is that it
+  is detached from anything potentially more significant than itself.
+    - but there's a lot to be gained from interdisciplinary approaches
+        - why not encourage interdisciplinary collaborations between
+          disciplines we value?
+- include a mention of or reference to Kuhn
+- create new exemplars
+    - I think an exemplar is a little broader than the examples I gave above
+    - I think it would be interesting to create an exemplar that's based on one
+      of those higher goods
+        - This can be seen as an act of generosity, from one discipline to
+          another. I'm gifting the methods of NLP to those disciplines that are
+          also interested in Aristotle's virtue ethics.
+- I would like to introduce a new toy example for NLP and semantic similarity.
+  Comparing various translations of great works.
+- I want to introduce the virtues
+- this in to additional exemplars
+
+
+==============================================================================
+
+While working on this project, I came across a number of methods, and each has
+their own canonical examples for demonstrating a particular type of analysis.
 
 For example, Natural Language Processing (NLP) has typical examples like spam
 detection in emails and classifying the sentiment of movie, product and
