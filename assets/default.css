@@ -8,5 +8,8 @@ h1 {
 blockquote {
     border-left: 4px grey solid;
     background-color: whitesmoke;
-    padding: 0.5rem;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
