@@ -23,6 +23,15 @@ layout = dbc.Container(
     [
         html.H1("Cosine Similarity"),
         dbc.Row(
+            dbc.Col(
+                [
+                    dcc.Markdown(cosine_similarity_methods, mathjax=True),
+                ],
+                md="8",
+            ),
+            justify="center",
+        ),
+        dbc.Row(
             [
                 dbc.Col(
                     dbc.Card(
@@ -111,7 +120,6 @@ layout = dbc.Container(
         dbc.Row(
             dbc.Col(
                 [
-                    dcc.Markdown(cosine_similarity_methods, mathjax=True),
                     dcc.Markdown(cosine_similarity_analysis),
                 ],
                 md="8",

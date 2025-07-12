@@ -20,31 +20,47 @@ Below are all of the translations grouped by passage.
 cosine_similarity_methods = """
 ### Methods
 
-At the heart of this analysis is the numerical representation of text data. The
-text is represented as a vector, and the dimensionality depends on the
-particular embedding model used. This vectorized representation of text is also
-known as an embedding. To determine the similarity of any pair of texts (or
-*translations* as I refer to them here), I make use of the cosine similarity
-metric. Vectors have a length and a direction, and the cosine similarity is a
-metric that tells us by how much any two vectors are pointing in the same
-direction (independent of the lengths of each individual vector). If two pieces
-of text are identical, they will be represented by the same embedding/vector,
-which will have maximal cosine similarity with itself (the maximal value is 1).
-Very similar texts will also have a high cosine similarity, and as the texts
-begin to talk about different topics or about the same topic in different ways,
-the cosine similarity between them will decrease. Eventually, once the texts
-are considered to be completely unrelated to each other and the embeddings are
-essentially orthogonal, the cosine similarity tends toward zero. The cosine
-similarity may also become negative, and when maximally negative, that means
-the embeddings are pointing in opposite directions.
+At the heart of this analysis is the numerical representation of text. Text can
+be represented as a vector by an AI model, and the dimensionality of that
+vector depends on the specific model used. This vectorized representation of
+text is also known as an embedding, and the model that converts the text to a
+vector can be referred to as the embedding model.
+
+To determine the similarity of any pair of translations, I make use of a metric
+known as the *cosine similarity*. Vectors have a length and a direction, and
+the cosine similarity is a metric that tells us by how much any two vectors are
+pointing in the same direction (independent of the lengths of each individual
+vector). If two pieces of text are identical, they will be represented by the
+same embedding/vector, which will have maximal cosine similarity with itself
+(the maximal value of the cosine similarity metric is 1). Very similar texts
+will also have a high cosine similarity, and as the texts begin to talk about
+different topics or about the same topic in different ways, the cosine
+similarity between them will decrease. In an extreme case of when the texts are
+completely unrelated to each other, the embeddings will be orthogonal and the
+cosine similarity will be zero. The cosine similarity may also become negative,
+and when maximally negative, that means the embeddings are pointing in exactly
+opposite directions.
 
 As a first step, each translation is vectorized, and the cosine similarity is
-calculated between each pair of vectors.
+calculated between each pair of vectors. The cosine similarity of two
+embeddings $$\\vec{A}$$ and $$\\vec{B}$$ is calculated as follows:
 
 $$
 \\text{cosine_similarity}(\\vec{A}, \\vec{B}) =
 \\frac{\\vec{A} \\cdot \\vec{B}}{\\|\\vec{A}\\| \\|\\vec{B}\\|}
 $$
+
+
+For this analysis, the cosine similarity was calculated for every pair of
+translations. The results of these calculations are visualized in the figure
+below. Each cell in the figure corresponds to a pair of translations and the
+computed cosine similarity between them. By clicking on a cell, the associated
+translations will appear for your viewing convenience.
+
+The displayed cells correspond to a default range of cosine similarity values
+(e.g. between 0.5 and 1), but this range can be dynamically adjusted with the
+slider below the figure. For example, to visualize only the most similar pairs,
+the bounds of the slider can be adjusted to e.g. 0.9 and 1.0.
 
 """
 
