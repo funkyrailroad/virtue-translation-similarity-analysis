@@ -51,20 +51,34 @@ $$
 $$
 
 
+"""
+
+cosine_similarity_analysis = """## Analysis
+
 For this analysis, the cosine similarity was calculated for every pair of
 translations. The results of these calculations are visualized in the figure
 below. Each cell in the figure corresponds to a pair of translations and the
 computed cosine similarity between them. By clicking on a cell, the associated
-translations will appear for your viewing convenience.
+translations will appear to the right.
 
 The displayed cells correspond to a default range of cosine similarity values
 (e.g. between 0.5 and 1), but this range can be dynamically adjusted with the
 slider below the figure. For example, to visualize only the most similar pairs,
 the bounds of the slider can be adjusted to e.g. 0.9 and 1.0.
 
+
 """
 
-cosine_similarity_analysis = """## Analysis
+
+cosine_similarity_discussion = """## Discussion
+
+
+- Give an overview of the structure that will be analyzed:
+    - translation pairs (TPs)
+    - intra-passage TPs and passage clusters
+    - inter-passage TPs and correlated clusters
+
+- most interesting findings
 
 The brighter colors correspond to higher similarity scores, and the darker
 colors to lower similarity scores.
