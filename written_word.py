@@ -1,30 +1,20 @@
 dataset_explanation = """
-The objects of inquiry (i.e. the dataset), consist of various excerpts from a
-number of translated publications of the Nicomachean Ethics into English.
 
-The Nicomachean Ethics is one of Aristotle's best-known works, in which he
-considers a number of virtues that are useful for living a good life (among
-other things).
+The objects of inquiry (i.e. the dataset), consist of a selection of passages
+from the *Nicomachean Ethics* and multiple translations of each passage into
+English. The bulk of the passages introduce the various character virtues, but
+I've also included a number of other passages I enjoyed.
 
 
-A number of passages are considered (`m`). I've selected passages that
-introduce the various virtues. He treats each virtue in much more depth. I've
-somewhat arbitrarily taken the first few sentences of each section, there was
-some manual effort involved in typing out the passages found in my hard copies.
-For the digital copies, I was just able to copy and paste the relevant text.
-The passages correspond to the various virtues that Aristotle expands upon in
-the above-named work.
+In an attempt to have uniformity of structure I've consistently taken the
+introductory sentences of each passage that correspond to the character
+virtues, but there is some grammatical variation in the way each is introduced.
+This doesn't impact comparing different translations of the same passage, but
+it may for comparing translations across different passages. There was some
+manual effort involved in typing out the passages found in my hard copies, but
+for the digital copies, I was just able to copy and paste the relevant text.
 
-For each passage, the corresponding translations are extracted from each source
-and compared.
-
-Each piece of text is a translation.
-
-The object of this piece is to see what we can determine from the various
-translations with the help of modern methods from the field of natural language
-processing (NLP). It is educational, I'll explain some of the basic concepts
-involved and provide sources for further understanding; and it is exploratory,
-I'll be taking a look at things I've been interested in lately.
+Below are all of the translations grouped by passage.
 
 """
 cosine_similarity_methods = """
@@ -176,9 +166,8 @@ I found this technique helpful, and also incredibly interesting. I noticed that
 sometimes the translations were very similar, and sometimes they were very
 different. I also started to see words used in the same context that I hadn't
 consciously considered or fully realized were related before. It made sense I
-thought about it, but I just hadn't thought about it before. (Just one example:
-characteristic, disposition, trait.) It also piqued my curiosity about what the
-original Greek words were that were being translated.
+thought about it, but I just hadn't thought about it before. It also piqued my
+curiosity about what the original Greek words were that were being translated.
 
 About a month or two after starting to read the versions on Wikisource, I
 decided to pick up a physical copy. I figured it'd be interesting to see how
@@ -194,10 +183,10 @@ really any overall view I could make use of to facilitate drawing any kind of
 aggregate conclusions. Being already very familiar with the methods and tools
 of natural language processing from my day job, and being particularly disposed
 to investigatory inquiries from my educational upbringing in the natural
-sciences, I saw this is the perfect opportunity to create something useful. 
+sciences, I saw this is the perfect opportunity to create something useful.
 
-In this project I quantify just how similar the various translations are from
-each other, present my findings in an interactive data dashboard, all while
+In this project I quantify just how similar the various translations are to
+each other and present my findings in an interactive data dashboard, all while
 giving myself additional exposure to this rich material I've been enjoying.
 
 """
