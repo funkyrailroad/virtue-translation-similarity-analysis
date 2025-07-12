@@ -21,7 +21,7 @@ dash.register_page(__name__)
 
 layout = dbc.Container(
     [
-        html.H1("Cosine Similarity"),
+        html.H1("The Means"),
         dbc.Row(
             dbc.Col(
                 [

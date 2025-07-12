@@ -18,7 +18,7 @@ def get_translation_texts_by_passage_id(quote_id, translations):
 
 layout = dbc.Container(
     [
-        html.H1("Objects of Inquiry"),
+        html.H1("The Objects of Inquiry"),
         dbc.Row(
             dbc.Col(
                 [

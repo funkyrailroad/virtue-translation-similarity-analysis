@@ -25,15 +25,29 @@ navbar = dbc.NavbarSimple(
     children=[
         dbc.NavItem(
             dcc.Link(
-                "Objects of Inquiry",
-                href="/objects-of-inquiry",
+                "The Aims",
+                href="/the-aims",
                 className="nav-link",
             ),
         ),
         dbc.NavItem(
             dcc.Link(
-                "Cosine Similarity",
-                href="/cosine-similarity",
+                "The Objects of Inquiry",
+                href="/the-objects-of-inquiry",
+                className="nav-link",
+            ),
+        ),
+        dbc.NavItem(
+            dcc.Link(
+                "The Means",
+                href="/the-means",
+                className="nav-link",
+            ),
+        ),
+        dbc.NavItem(
+            dcc.Link(
+                "The Ends",
+                href="/the-ends",
                 className="nav-link",
             ),
         ),

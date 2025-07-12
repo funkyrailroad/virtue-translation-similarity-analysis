@@ -220,3 +220,11 @@ each other and present my findings in an interactive data dashboard, all while
 giving myself additional exposure to this rich material I've been enjoying.
 
 """
+
+conclusion_text = """
+
+- overview
+    - what this method of analysis allows one to do
+    - some of the interesting findings
+
+"""
