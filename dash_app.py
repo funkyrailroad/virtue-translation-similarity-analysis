@@ -37,20 +37,20 @@ navbar = dbc.NavbarSimple(
                 className="nav-link",
             ),
         ),
-        dbc.NavItem(
-            dcc.Link(
-                "Most Similar Translations",
-                href="/most-similar-translations",
-                className="nav-link",
-            ),
-        ),
-        dbc.NavItem(
-            dcc.Link(
-                "Least Similar Translations",
-                href="/least-similar-translations",
-                className="nav-link",
-            ),
-        ),
+        # dbc.NavItem(
+        #     dcc.Link(
+        #         "Most Similar Translations",
+        #         href="/most-similar-translations",
+        #         className="nav-link",
+        #     ),
+        # ),
+        # dbc.NavItem(
+        #     dcc.Link(
+        #         "Least Similar Translations",
+        #         href="/least-similar-translations",
+        #         className="nav-link",
+        #     ),
+        # ),
         dbc.NavItem(
             dcc.Link(
                 "Dimensionality Reduction",
