@@ -1,5 +1,5 @@
 from copy import deepcopy
-from data import translations
+from data import translations, passages, books
 from functools import lru_cache
 from sentence_transformers import SentenceTransformer
 from sklearn.manifold import MDS
@@ -92,6 +92,7 @@ def display_cosine_similarity_matrix(
             zmin=0,
             zmax=1,
             customdata=customdata,
+            hovertemplate="<b>similarity:%{z:.3f}</b><br><br>x-passage:%{customdata[0]}<br><br>y-passage: %{customdata[1]}",
             # hovertemplate="<b>similarity:%{z:.3f}</b><br><br>x-text:%{customdata[0]}<br><br>y-text: %{customdata[1]}",
             # hovertemplate="similarity:%{z:.3f}<br>",
             # name="",
@@ -134,7 +135,36 @@ def display_cosine_similarity_matrix(
     return fig
 
 
-def prepare_custom_data_for_heatmap_hovertext(
+def prepare_passage_custom_data_for_heatmap_hovertext(
+    labels,
+    other_labels,
+    char_limit=None,
+):
+    cdy = []
+    for text in labels:
+        row = []
+        for i in range(len(labels)):
+            other_label_ind = i // len(books)
+            row.append(other_labels[other_label_ind]["description"])
+            if i % len(books) == 0:
+                other_label_ind += 1
+        cdy.append(row)
+
+    cdx = []
+    for i in range(len(labels)):
+        row = []
+        for text in labels:
+            other_label_ind = i // len(books)
+            row.append(other_labels[other_label_ind]["description"])
+            if i % len(books) == 0:
+                other_label_ind += 1
+        cdx.append(row)
+
+    customdata = np.dstack((cdx, cdy))
+    return customdata
+
+
+def prepare_quote_custom_data_for_heatmap_hovertext(
     labels,
     char_limit=None,
 ):
@@ -166,8 +196,9 @@ def calculate_and_display_cosine_similarity_matrix(
         translation_texts,
         translation_vectors,
     )
-    customdata = prepare_custom_data_for_heatmap_hovertext(
+    customdata = prepare_passage_custom_data_for_heatmap_hovertext(
         labels=translation_texts,
+        other_labels=passages,
         char_limit=char_limit,
     )
     fig = display_cosine_similarity_matrix(
