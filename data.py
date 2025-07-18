@@ -406,7 +406,7 @@ translations = (
         book_id=2,
     ),
     dict(
-        text="""And first let us speak about courage. Now, that it is a mean with respect to fear and confidence has already become apparent. It is clear that we fear frightening things, and these are, to speak unqualifiedly, bad things. Hence people also define fear as the anticipation of a bad thing. We fear, then, all the bad things -- for example, disrepute, poverty, sickness, friendlessness, and death -- but the courageous person is not held to be concerned witha ll of these. For some thigns one even out to fear, and it is noble to do so and shameful not to -- for example, disrepute, since he who fears this is decent and bashful, whereas he who does not is shameless...""",
+        text="""And first let us speak about courage. Now, that it is a mean with respect to fear and confidence has already become apparent. It is clear that we fear frightening things, and these are, to speak unqualifiedly, bad things. Hence people also define fear as the anticipation of a bad thing. We fear, then, all the bad things -- for example, disrepute, poverty, sickness, friendlessness, and death -- but the courageous person is not held to be concerned with all of these. For some things one even ought to fear, and it is noble to do so and shameful not to -- for example, disrepute, since he who fears this is decent and bashful, whereas he who does not is shameless...""",
         quote_id=7,
         vector=None,
         language="en",
@@ -686,7 +686,7 @@ translations = (
         book_id=2,
     ),
     dict(
-        text="""It is not fitting to speak about a sense of shame as a particular vitue, for it seems more like a passion than a characteristic. It is defined, at any rate, as a certain fear of disrepute, and it turns out to resemble the fear of terrible things, for those who feel shame blush and those who fear death turn pale. Both, then, appear in some way to be bodily, which seems to be more a mark of a passion than of a characteristic.""",
+        text="""It is not fitting to speak about a sense of shame as a particular virtue, for it seems more like a passion than a characteristic. It is defined, at any rate, as a certain fear of disrepute, and it turns out to resemble the fear of terrible things, for those who feel shame blush and those who fear death turn pale. Both, then, appear in some way to be bodily, which seems to be more a mark of a passion than of a characteristic.""",
         quote_id=17,
         vector=None,
         language="en",
