@@ -65,13 +65,13 @@ navbar = dbc.NavbarSimple(
         #         className="nav-link",
         #     ),
         # ),
-        dbc.NavItem(
-            dcc.Link(
-                "Dimensionality Reduction",
-                href="/dimensionality-reduction",
-                className="nav-link",
-            ),
-        ),
+        # dbc.NavItem(
+        #     dcc.Link(
+        #         "Dimensionality Reduction",
+        #         href="/dimensionality-reduction",
+        #         className="nav-link",
+        #     ),
+        # ),
     ],
     brand="Home",
     brand_href="/",
