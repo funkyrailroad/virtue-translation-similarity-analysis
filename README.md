@@ -1,5 +1,8 @@
 # Usage
 
+[Install uv](https://docs.astral.sh/uv/getting-started/installation/)
+
+
 Start the app
 ```
 uv run python dash_app.py
