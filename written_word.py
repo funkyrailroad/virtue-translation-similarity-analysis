@@ -12,7 +12,7 @@ virtues, but there is some grammatical variation in the way each is introduced.
 This doesn't impact comparing different translations of the same passage, but
 it may for comparing translations across different passages. There was some
 manual effort involved in typing out the passages found in my hard copies, but
-for the digital copies, I was just able to copy and paste the relevant text.
+for the digital copies, I was able to copy and paste the relevant text.
 
 Below are all of the translations grouped by passage.
 
@@ -21,28 +21,25 @@ cosine_similarity_methods = """
 ### Methods
 
 At the heart of this analysis is the numerical representation of text. Text can
-be represented as a vector by an AI model, and the dimensionality of that
-vector depends on the specific model used. This vectorized representation of
-text is also known as an embedding, and the model that converts the text to a
-vector can be referred to as the embedding model.
+be represented as a vector by a machine learning model, and the dimensionality
+of that vector depends on the specific model used. This vectorized
+representation of text is also known as an embedding, and the model that
+converts the text to a vector can be referred to as the embedding model.
 
-To determine the similarity of any pair of translations, I make use of a metric
+To quantify how similar any pair of translations are, I make use of a metric
 known as the *cosine similarity*. Vectors have a length and a direction, and
-the cosine similarity is a metric that tells us by how much any two vectors are
-pointing in the same direction (independent of the lengths of each individual
-vector). If two pieces of text are identical, they will be represented by the
-same embedding/vector, which will have maximal cosine similarity with itself
-(the maximal value of the cosine similarity metric is 1). Very similar texts
-will also have a high cosine similarity, and as the texts begin to talk about
-different topics or about the same topic in different ways, the cosine
-similarity between them will decrease. In an extreme case of when the texts are
-completely unrelated to each other, the embeddings will be orthogonal and the
-cosine similarity will be zero. The cosine similarity may also become negative,
-and when maximally negative, that means the embeddings are pointing in exactly
-opposite directions.
-
-As a first step, each translation is vectorized, and the cosine similarity is
-calculated between each pair of vectors. The cosine similarity of two
+the cosine similarity is a metric that tells us to what extent any two vectors
+are pointing in the same direction (independent of the lengths of each
+individual vector). If two pieces of text are identical, they will be
+represented by the same embedding/vector, which will have maximal cosine
+similarity with itself (the maximal value of the cosine similarity metric is
+1). Very similar texts will also have a high cosine similarity, and as the
+texts begin to talk about different topics or about the same topic in different
+ways, the cosine similarity between them will decrease. In an extreme case of
+when the texts are completely unrelated to each other, the embeddings will be
+orthogonal and the cosine similarity will be zero. The cosine similarity may
+also become negative, and when maximally negative, that means the embeddings
+are pointing in exactly opposite directions. The cosine similarity of two
 embeddings $$\\vec{A}$$ and $$\\vec{B}$$ is calculated as follows:
 
 $$
@@ -50,16 +47,19 @@ $$
 \\frac{\\vec{A} \\cdot \\vec{B}}{\\|\\vec{A}\\| \\|\\vec{B}\\|}
 $$
 
+Where $$\\vec{A} \\cdot \\vec{B}$$ is the dot product of the two vectors, and
+$$\\|\\vec{A}\\|$$ is the magnitude of the vector.
 
 """
 
 cosine_similarity_analysis = """## Analysis
 
-For this analysis, the cosine similarity was calculated for every pair of
-translations. The results of these calculations are visualized in the figure
-below. Each cell in the figure corresponds to a pair of translations and the
-computed cosine similarity between them. By clicking on a cell, the associated
-translations will appear to the right.
+For this analysis, each translation was vectorized and the cosine similarity
+was calculated for every pair of translations. The results of these
+calculations are visualized in the figure below. Each cell in the figure
+corresponds to a pair of translations and the computed cosine similarity
+between them. By clicking on a cell, the associated translations will appear to
+the right.
 
 The displayed cells correspond to a default range of cosine similarity values
 (e.g. between 0.5 and 1), but this range can be dynamically adjusted with the
@@ -72,97 +72,97 @@ the bounds of the slider can be adjusted to e.g. 0.9 and 1.0.
 
 cosine_similarity_discussion = """## Discussion
 
+The figure above is a two-dimensional histogram, which is also known as a
+density heatmap. It consists of many cells, and each cell corresponds to two
+translations and a similarity score. The brighter colors correspond to higher
+similarity scores, and the darker colors to lower similarity scores.
 
-- Give an overview of the structure that will be analyzed:
-    - translation pairs (TPs)
-    - intra-passage TPs and passage clusters
-    - inter-passage TPs and correlated clusters
-
-- most interesting findings
-
-The brighter colors correspond to higher similarity scores, and the darker
-colors to lower similarity scores.
-
-The figure above is a two-dimensional heatmap/histogram.
-
-
-### Passage clusters and intra-passage translation pairs
+*Intra*passage translation pairs correspond to translations of the same
+passage, while *inter*passage translations correspond to translations of
+different passages.
 
 The most prominent structure that emerges is the diagonal of squares through
-the middle. Each individual square corresponds to a cluster of translations of
-the same passage. I call one of these squares a *passage cluster*, since all
-the translations in it correspond to the same passage. It is to be expected
-that different translations of the same passage should have high similarities;
-it is interesting however to see that some translations have high similarities
-with translations of other passages, and some translations even have highER
-similarities with at least one translation of a different passage than with at
-least one translation of the same passage.
+the middle. Each individual square is a cluster of the multiple translations of
+a single passage i.e. intrapassage TPs. I call one of these squares a *passage
+cluster*, since all the translations in it correspond to the same passage.
 
-A passage cluster consists of many cells, and each cell corresponds to two
-translations and a similarity score.
-
-Intra-passage translation pairs correspond to translations of the same passage,
-inter-passage translations correspond to translations of different passages.
-
-I expected intra-passage translation pairs to have higher similarities than
-inter-passage translation pairs, because intra-passage TPs correspond to the
-same source material, whereas intra-passage TPs correspond to different
-translation pairs.
-
-There
+Outside of the main diagonal are cells that correspond to *inter*passage TPs
+i.e. TPs from different passages. High similarities across many or all
+intrapassage TPs from any two passages is indicative of a relationship between
+those two passages, and I'll refer to them as *correlated passage clusters*.
 
 
-A passage cluster is a cluster of TPs that all correspond the same passage.
-These form the most prominent feature of the heatmap: the diagonal of squares
-found in the image. These clusters have a dimension of `n * n`, where `n`
-corresponds to the number of translations included for a given passage. `n=4`
-in our case.
 
-The different passage clusters differ in their coloring. A uniformly- and
-brightly- colored cluster indicates that the various TPs have a high similarity
+### Intrapassage TPs and Passage Clusters
+
+The different passage clusters differ in their coloring. A uniformly and
+brightly colored cluster indicates that the various TPs have a high similarity
 with each other. The inference I draw from this is that the different
-translations have a high amount of agreement in how they've translated the
-original text. These types of clusters may point to concepts that are well
-understood.
+translations have a high amount of agreement in the words used to convey the
+meaning of the original text. This type of clusters may point to concepts that
+are well understood, or at least uniformly understood amongst the various
+translators. An easy way to identify these clusters is to increase the lower
+limit of the "Cosine Similarity Range" slider until only the most brightly
+colored passage clusters remain. (You may also click the lower limit and use
+the arrow keys to adjust it.) The passage clusters for the virtue definition
+and the virtue of courage are good examples of this.
 
 
-On the other hand, a uniformly- and darkly- colored cluster indicates that the
-various TPs have a low similarity with each other. The inference I draw from
-this is that the different translations have a low amount of agreement in how
-they've translated the original text. These types of clusters may point to
-concepts that are poorly understood, or at least widely-understood differently
-by the various translators and readers.
+On the other hand, a uniformly and darkly colored cluster indicates that the
+various TPs have a relatively low similarity with each other. The inference I
+draw from this is that the different translations have a relatively low amount
+of agreement in the words used to convey the meaning of the original text.
+These types of clusters may point to concepts that are poorly understood, or at
+least understood differently by the various translators. These clusters can
+also be identified interactively in the figure by decreasing the upper limit on
+the slider until the passage clusters start to disappear. The passage cluster
+for good-temperedness is a good example of this.
 
 
 A remaining option is that a cluster may be colored heterogeneously, with both
-brighter and darker individual squares within the `n*n` cluster. The inference
-I draw from this is that the differing translations have varying levels of
-agreement with one another. This may be for a number of reasons. If two are
-highly similar, where others diverge, it may be the case that one author based
-their translation not only on the original text, but also on the other author's
-translation. This would be an interesting feature to examine, because it could
-offer a quantitative and computational way of analyzing the different lineages
-of translations.
-
-It is also possible that most of the translations are in agreement, and an
-outlier is present among them. This analysis offers a way to identify the
-outliers, and further analysis can be conducted. There.
-
-Another interesting aspect to investigate would be the effect that an
-additional translation adds to a reader's understanding of the subject matter.
-It may be the case that the two least similar translations offer the most
-differing descriptions of the subject and possibly thus the most information
-total. I see parallels here between information theory, entropy and statistical
-mechanics.
-
-It may be the case that there is a sweet spot in terms of the translation
-differences such that translations that are too differing and too similar are
-both less effective at providing additional understanding.
+brighter and darker individual squares within the passage cluster. The
+inference I draw from this is that the differing translations have varying
+levels of agreement with one another. This may be for a number of reasons. If
+two are highly similar, where others diverge, it may be the case that one
+author based their translation not only on the original text, but also on the
+other author's translation. This would be an interesting feature to examine,
+because it could offer a quantitative and computational way of analyzing the
+different lineages of translations. It is also possible that most of the
+translations are in agreement, and an outlier is present among them. This
+analysis offers a way to identify the outliers, and further analysis can be
+conducted. The passage cluster for shame has TPs with both high and low
+similarity scores.
 
 
-### Inter-passage translation pairs
+### Interpassage TPs and Correlated Clusters
 
-### Correlated clusters
+It is no surprise that intrapassage TPs (translations of the same passage) have
+high similarities; it is interesting however to see that some interpassage
+translations also have a high similarity. These can be identified in the figure
+above by the brighter spots that are off of the main diagonal of passage
+clusters. These may be single, isolated cells, surrounded by TPs that have
+otherwise low similarity scores, but they may also be surrounded by other TPs
+with equal or greater similarity scores. In cases where multiple translations
+of one passage have high similarities with multiple translations from another
+passage, this likely indicates a significant similarity between the different
+passages. The interpassage TPs for the passages on liberality and magnificence
+offer examples of these.
+
+
+
+translations have
+high similarities with translations of other passages.
+
+
+
+and some translations
+even have highER similarities with at least one translation of a different
+passage than with at least one translation of the same passage.
+- give example of specific TPs that fulfill this
+
+
+There are
+
 
 """
 
@@ -226,5 +226,22 @@ conclusion_text = """
 - overview
     - what this method of analysis allows one to do
     - some of the interesting findings
+    - interesting words that are paired up:
+        - pursuit and choice equivalency in opening passage
+
+Another interesting aspect to investigate would be the effect that an
+additional translation adds to a reader's understanding of the subject matter.
+It may be the case that the two least similar translations offer the most
+differing descriptions of the subject and possibly thus the most information
+total. I see parallels here between information theory, entropy and statistical
+mechanics.
+- this is a key point, mention this earlier
+
+
+It may be the case that there is a sweet spot in terms of the translation
+differences such that translations that are too differing and too similar are
+both less effective at providing additional understanding.
+
+
 
 """
